@@ -3,12 +3,43 @@
  */
 package git.mcqwzd.game.ourcraft;
 
-public class App {
-    public String getGreeting() {
-        return "Hello world.";
-    }
+import com.jme3.app.SimpleApplication;
+import com.jme3.scene.Node;
+import com.jme3.system.AppSettings;
+import com.simsilica.lemur.Container;
+import com.simsilica.lemur.GuiGlobals;
+import com.simsilica.lemur.Label;
+import com.simsilica.lemur.style.BaseStyles;
+
+public class App extends SimpleApplication{
+ public static final String VERSION="OurCraft";
 
     public static void main(String[] args) {
-        System.out.println(new App().getGreeting());
+        App app=new App();
+        AppSettings setting=new AppSettings(true);
+        //setting.setResolution(480, 600);
+        setting.setFrequency(60);
+        setting.setFrameRate(60);
+        setting.setTitle(VERSION);
+        app.setSettings(setting);
+        app.start();
+
+    }
+
+    @Override
+    public void simpleInitApp() { 
+        Node guinNode=getGuiNode();
+        GuiGlobals.initialize(this);
+        BaseStyles.loadGlassStyle();
+        /* apply global setting
+        GuiGlobals.getInstance().getStyles().setDefaultStyle("glass");
+        */
+        
+        Container window=new Container();
+        guinNode.attachChild(window);
+        //window.setLocalTranslation(300, 300, 0);
+        window.addChild(new Label("hellworld"));
+
+
     }
 }

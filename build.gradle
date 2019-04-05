@@ -21,14 +21,27 @@ repositories {
 }
 def jme3=[v:'3.2.0-stable',g:'org.jmonkeyengine']
 dependencies {
-    // This dependency is found on compile classpath of this component and consumers.
-    implementation 'com.google.guava:guava:27.0.1-jre'
+	//add cubes framework support
+	implementation project(':Cubes')
+
     //JME
-    compile "${jme3.g}:jme3-core:${jme3.v}"
-    runtime "${jme3.g}:jme3-desktop:${jme3.v}"
-	runtime "${jme3.g}:jme3-lwjgl:${jme3.v}"
-    // Use JUnit test framework
+    implementation "${jme3.g}:jme3-core:${jme3.v}"
+    implementation "${jme3.g}:jme3-bullet:${jme3.v}"
+    implementation "${jme3.g}:jme3-terrain:${jme3.v}"
+    implementation "${jme3.g}:jme3-desktop:${jme3.v}"
+	implementation "${jme3.g}:jme3-lwjgl:${jme3.v}"
+    implementation "${jme3.g}:jme3-effects:${jme3.v}"
+    implementation "${jme3.g}:jme3-bullet-native:${jme3.v}"
+    //use lemur to design gui
+    implementation 'com.google.guava:guava:27.1-jre'
+    implementation group: 'org.codehaus.groovy', name: 'groovy-all', version: '2.5.6', ext: 'pom'
+    implementation group: 'org.slf4j', name: 'slf4j-api', version: '1.8.0-beta4'
+    implementation "com.simsilica:lemur:1.11.0"
+    implementation "com.simsilica:lemur-proto:1.10.0" 
+
+    
     testImplementation 'junit:junit:4.12'
+
 }
 
 // Define the main class for the application
